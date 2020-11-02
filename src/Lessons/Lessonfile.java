@@ -1,36 +1,51 @@
 package Lessons;
 
 import java.util.Scanner;
-
 public class Lessonfile {
 
-    public static void main(String[] args) {
+    static int[] ask_array(int n) {
         Scanner in = new Scanner(System.in);
-        int arr[][] = new int[3][5];
-        double count_even = 0, count_odd = 0;
+        System.out.print("Введите элементы массива: ");
+        int array[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            array[i] = in.nextInt();
+        }
+        return array;
+    }
 
-        for (int i=0; i<3; i++){
-            for (int j=0; j<5; j++){
-                arr[i][j] = in.nextInt();
-                if (arr[i][j] % 2 == 0){
-                    count_even++;
-                } else {
-                 count_odd++;
-                }
+    static void print_array(int[] ar) {
+        System.out.print("Ваш массив: ");
+        for (int i = 0; i < ar.length; i++) {
+            System.out.print(ar[i] + " ");
+        }
+    }
+
+    static boolean ismultiple(int n) {
+        int sum = 0;
+
+        while(n>0){
+            sum += n%10;
+            n/=10;
+        }
+
+        if (sum % 13 == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static int counter(int n){
+        int count = 0;
+        for (int i = 100; i < n; i++){
+            if (ismultiple(i)){
+                count++;
             }
         }
+        return count;
+    }
 
-        for (int i=0; i<3; i++){
-            for (int j=0; j<5; j++){
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-
-        if (count_even > count_odd){
-            System.out.println("More even numbers. Even: " + count_even + " Odd: " + count_odd);
-        } else{
-            System.out.println("More odd numbers. Odd: " + count_odd + " Even: " + count_even);
-        }
-}
+    public static void main(String[] args) {
+        System.out.println(counter(999));
+    }
 }
